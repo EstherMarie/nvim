@@ -9,25 +9,23 @@ return require('packer').startup(function(use)
 
   use 'nvim-lua/plenary.nvim'
   use 'folke/neodev.nvim'
+  use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdateSync'})
+  use 'jose-elias-alvarez/null-ls.nvim'
+
+
+  -- File explorer, navigation
+  
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
-  -- or                            , branch = '0.1.x',
+    -- or                            , branch = '0.1.x',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
-  use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdateSync'})
-  use 'tpope/vim-fugitive'
-  use 'jose-elias-alvarez/null-ls.nvim'
-  use 'windwp/nvim-autopairs'
   use {
-    'numToStr/Comment.nvim',
-    require('Comment').setup()
-  }
-
-  use {
-    'folke/which-key.nvim',
-    config = function()
-      require('which-key').setup {}
-    end
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+    require("nvim-tree").setup()
   }
   use {
     'ahmedkhalf/project.nvim',
@@ -39,36 +37,50 @@ return require('packer').startup(function(use)
       }
     end
   }
-  use {'akinsho/toggleterm.nvim', tag = '*', config = function()
-    require('toggleterm').setup({
-      size = 20,
-      open_mapping = [[<c-\>]],
-      hide_numbers = true,
-      shade_terminals = true,
-      shading_factor = 2,
-      start_in_insert = true,
-      insert_mappings = true,
-      persist_size = true,
-      direction = "float",
-      close_on_exit = true,
-      shell = vim.o.shell,
-      float_opts = {
-        border = "curved",
-      },
-    })
-  end}
   use {
-    'folke/todo-comments.nvim',
-    requires = 'nvim-lua/plenary.nvim',
+    'folke/which-key.nvim',
     config = function()
-      require('todo-comments').setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
+      require('which-key').setup {}
+    end
+  }
+
+
+  -- Git
+  use 'tpope/vim-fugitive'
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup{
+        current_line_blame = true,
       }
     end
   }
 
+
+  -- Terminal and Statusline
+
+  use {
+    'akinsho/toggleterm.nvim', 
+    tag = '*', 
+    config = function()
+      require('toggleterm').setup({
+        size = 20,
+        open_mapping = [[<c-\>]],
+        hide_numbers = true,
+        shade_terminals = true,
+        shading_factor = 2,
+        start_in_insert = true,
+        insert_mappings = true,
+        persist_size = true,
+        direction = "float",
+        close_on_exit = true,
+        shell = vim.o.shell,
+        float_opts = {
+          border = "curved",
+        },
+      })
+    end
+  }
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
@@ -76,8 +88,10 @@ return require('packer').startup(function(use)
       options = {
         icons_enabled = true,
         theme = 'auto',
-        component_separators = { left = '', right = ''},
-        section_separators = { left = '', right = ''},
+        component_separators = {'|'},
+        section_separators = {''},
+        -- component_separators = { left = '', right = ''},
+        -- section_separators = { left = '', right = ''},
         disabled_filetypes = {
           statusline = {},
           winbar = {},
@@ -113,6 +127,33 @@ return require('packer').startup(function(use)
       extensions = {}
     }
   }
+
+
+
+  -- Editing
+  
+  use {
+    "windwp/nvim-autopairs",
+     config = function() 
+       require("nvim-autopairs").setup {} 
+     end
+  }
+  use {
+    'numToStr/Comment.nvim',
+    require('Comment').setup()
+  }
+  use {
+    'folke/todo-comments.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('todo-comments').setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
 
   -- Themes
   use 'folke/tokyonight.nvim'
@@ -153,7 +194,7 @@ return require('packer').startup(function(use)
 
    -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
+  if is_bootstrap then
     require("packer").sync()
   end
 end)
