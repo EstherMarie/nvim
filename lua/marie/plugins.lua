@@ -9,11 +9,11 @@ return require('packer').startup(function(use)
 
   use 'nvim-lua/plenary.nvim'
   use 'folke/neodev.nvim'
-  use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdateSync'})
+  use{'nvim-treesitter/nvim-treesitter', run = ':TSUpdateSync'}
   use 'jose-elias-alvarez/null-ls.nvim'
 
 
-  -- File explorer, navigation
+  -- ========== File explorer, navigation ==========
   
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -49,7 +49,8 @@ return require('packer').startup(function(use)
     'folke/which-key.nvim',
     config = function()
       require('which-key').setup {}
-    end
+    end,
+    event = "BufWinEnter",
   }
 
 
@@ -61,11 +62,12 @@ return require('packer').startup(function(use)
       require('gitsigns').setup{
         current_line_blame = true,
       }
-    end
+    end,
+    event = "BufRead",
   }
+ 
 
-
-  -- Terminal and Statusline
+  -- ========== Terminal and Statusline ==========
 
   use {
     'akinsho/toggleterm.nvim', 
@@ -87,7 +89,8 @@ return require('packer').startup(function(use)
           border = "curved",
         },
       })
-    end
+    end,
+    event = "BufWinEnter",
   }
   use {
     'nvim-lualine/lualine.nvim',
@@ -137,8 +140,7 @@ return require('packer').startup(function(use)
   }
 
 
-
-  -- Editing
+  -- ========== Editing ==========
   
   use {
     'styled-components/vim-styled-components', 
@@ -153,7 +155,8 @@ return require('packer').startup(function(use)
   }
   use {
     'numToStr/Comment.nvim',
-    require('Comment').setup()
+    require('Comment').setup(),
+    event = "BufRead",
   }
   use {
     'folke/todo-comments.nvim',
@@ -168,7 +171,7 @@ return require('packer').startup(function(use)
   }
 
 
-  -- Themes
+  -- ========== Themes ==========
   use 'folke/tokyonight.nvim'
   use 'arcticicestudio/nord-vim'
 

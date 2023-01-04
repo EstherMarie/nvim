@@ -25,6 +25,14 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 -- Packer
 vim.keymap.set("n", "<leader>s", ":PackerSync<CR>", opts)
 
+-- Fugitive
+vim.keymap.set("n", "<leader>g", ":Git<CR>", opts)
+vim.keymap.set("n", "<leader>ga", ":Git add<CR>", opts)
+vim.keymap.set("n", "<leader>gc", ":Git commit<CR>", opts)
+vim.keymap.set("n", "<leader>gl", ":Git log<CR>", opts)
+vim.keymap.set("n", "<leader>gd", ":Git diff<CR>", opts)
+vim.keymap.set("n", "<leader>gm", ":Git mergetool<CR>", opts)
+
 -- NvimTree
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
