@@ -1,4 +1,4 @@
-require('plugins')
-require('keymap')
-require('set')
-require('colorscheme')
+require('marie.plugins')
+require('marie.keymap')
+require('marie.set')
+require('marie.colorscheme')
