@@ -22,6 +22,9 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 
 -- Plugins --
 
+-- Packer
+vim.keymap.set("n", "<leader>s", ":PackerSync<CR>", opts)
+
 -- NvimTree
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 

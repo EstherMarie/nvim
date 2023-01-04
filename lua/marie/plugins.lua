@@ -25,7 +25,15 @@ return require('packer').startup(function(use)
     requires = {
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
-    require("nvim-tree").setup()
+    require("nvim-tree").setup({
+      view = {
+        mappings = {
+          list = {
+            { key = "l", action = "open_file" },
+          },
+        },
+      },
+    })
   }
   use {
     'ahmedkhalf/project.nvim',
@@ -133,6 +141,11 @@ return require('packer').startup(function(use)
   -- Editing
   
   use {
+    'styled-components/vim-styled-components', 
+    branch = 'main' 
+  }
+  use 'editorconfig/editorconfig-vim'
+  use {
     "windwp/nvim-autopairs",
      config = function() 
        require("nvim-autopairs").setup {} 
@@ -157,6 +170,7 @@ return require('packer').startup(function(use)
 
   -- Themes
   use 'folke/tokyonight.nvim'
+  use 'arcticicestudio/nord-vim'
 
   -- LSP
   
@@ -191,10 +205,4 @@ return require('packer').startup(function(use)
       lsp.setup()
     end
   }
-
-   -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if is_bootstrap then
-    require("packer").sync()
-  end
 end)
