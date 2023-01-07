@@ -9,8 +9,18 @@ return require('packer').startup(function(use)
 
   use 'nvim-lua/plenary.nvim'
   use 'folke/neodev.nvim'
-  use{'nvim-treesitter/nvim-treesitter', run = ':TSUpdateSync'}
   use 'jose-elias-alvarez/null-ls.nvim'
+  use {
+    'nvim-treesitter/nvim-treesitter', 
+    run = ':TSUpdateSync',
+    require('nvim-treesitter.configs').setup {
+       ensure_installed = { 'c', 'cpp', 'c_sharp', 'dockerfile', 'go', 'javascript', 'lua', 'html', 'python', 'rust', 'typescript', 'tsx', 'help', 'vim' },
+    }
+  }
+  use {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    after = 'nvim-treesitter',
+  }
 
 
   -- ========== File explorer, navigation ==========
@@ -54,7 +64,7 @@ return require('packer').startup(function(use)
   }
 
 
-  -- Git
+  -- ========== Git ==========
   use 'tpope/vim-fugitive'
   use {
     'lewis6991/gitsigns.nvim',
@@ -169,11 +179,13 @@ return require('packer').startup(function(use)
       }
     end
   }
+  use 'mattn/emmet-vim'
 
 
   -- ========== Themes ==========
   use 'folke/tokyonight.nvim'
   use 'arcticicestudio/nord-vim'
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   -- LSP
   
