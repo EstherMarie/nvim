@@ -9,7 +9,8 @@ return require('packer').startup(function(use)
 
   use 'nvim-lua/plenary.nvim'
   use 'folke/neodev.nvim'
-  use 'jose-elias-alvarez/null-ls.nvim'
+
+  -- Treesitter
   use {
     'nvim-treesitter/nvim-treesitter', 
     run = ':TSUpdateSync',
@@ -150,7 +151,7 @@ return require('packer').startup(function(use)
   }
 
 
-  -- ========== Editing ==========
+  -- ========== Editing and formatting ==========
   
   use {
     'styled-components/vim-styled-components', 
@@ -187,12 +188,37 @@ return require('packer').startup(function(use)
   use 'arcticicestudio/nord-vim'
   use { "catppuccin/nvim", as = "catppuccin" }
 
-  -- LSP
+  -- ========== LSP ========== 
   
   -- use {
   --   'neoclide/coc.nvim', 
   --   branch= 'release'
   -- }
+  use({
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      null_ls = require("null-ls")
+      sources = {
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.diagnostics.eslint,
+        null_ls.builtins.code_actions.gitsigns,
+      }
+
+      null_ls.setup({ sources = sources })   
+    end,
+    requires = { "nvim-lua/plenary.nvim" },
+  })
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
   use {
     'VonHeikemen/lsp-zero.nvim',
     requires = {
