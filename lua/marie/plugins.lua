@@ -140,7 +140,8 @@ require('packer').startup(function(use)
 
   -- ===== Themes =====
   use { "catppuccin/nvim", as = "catppuccin" }
-  use 'folke/tokionight.nvim'
+  use 'folke/tokyonight.nvim'
+  use 'arcticicestudio/nord-vim'
   use 'navarasu/onedark.nvim'
 
 
