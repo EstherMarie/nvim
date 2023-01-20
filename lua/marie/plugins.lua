@@ -1,4 +1,3 @@
-
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
 -- Only required if you have packer configured as `opt`
@@ -12,33 +11,29 @@ require('packer').startup(function(use)
   use 'folke/neodev.nvim'
   use 'j-hui/fidget.nvim'
 
-  use {
-    'VonHeikemen/lsp-zero.nvim',
+  use { -- LSP Configuration & Plugins
+    'neovim/nvim-lspconfig',
     requires = {
-      -- LSP Support
-      {'neovim/nvim-lspconfig'},
-      {'williamboman/mason.nvim'},
-      {'williamboman/mason-lspconfig.nvim'},
+      -- Automatically install LSPs to stdpath for neovim
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
 
-      -- Autocompletion
-      {'hrsh7th/nvim-cmp'},
-      {'hrsh7th/cmp-buffer'},
-      {'hrsh7th/cmp-path'},
-      {'saadparwaiz1/cmp_luasnip'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'hrsh7th/cmp-nvim-lua'},
+      -- Useful status updates for LSP
+      'j-hui/fidget.nvim',
 
-      -- Snippets
-      {'L3MON4D3/LuaSnip'},
-      {'rafamadriz/friendly-snippets'},
+      -- Additional lua configuration, makes nvim stuff amazing
+      'folke/neodev.nvim',
     },
-    config = function()
-      local lsp = require('lsp-zero')
-      lsp.preset('recommended')
-
-      lsp.setup()
-    end
   }
+
+  use { -- Autocompletion
+    'hrsh7th/nvim-cmp',
+    requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+  }
+
+  use 'hrsh7th/cmp-nvim-lua'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
 
   use { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -57,20 +52,33 @@ require('packer').startup(function(use)
   use 'lewis6991/gitsigns.nvim'
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
+  -- Project management
+  use {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("project_nvim").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
   -- Toggleterm
-  use {"akinsho/toggleterm.nvim",
+  use { "akinsho/toggleterm.nvim",
     tag = '*',
     config = function()
       require("toggleterm").setup()
-    end}
+    end }
 
   -- cool plugins
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
-  use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+  use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
   use 'nvim-tree/nvim-web-devicons'
+  use 'ThePrimeagen/vim-be-good'
 
   use {
     'nvim-tree/nvim-tree.lua',
@@ -125,18 +133,20 @@ require('packer').startup(function(use)
   }
   use {
     "windwp/nvim-autopairs",
-     config = function()
-       require("nvim-autopairs").setup {}
-     end
+    config = function()
+      require("nvim-autopairs").setup {}
+    end
   }
   use 'mattn/emmet-vim'
   use {
     'folke/todo-comments.nvim',
     requires = 'nvim-lua/plenary.nvim',
-    config = function ()
+    config = function()
       require('todo-comments').setup {}
     end
   }
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
+  use 'RRethy/vim-illuminate'
 
   -- ===== Themes =====
   use { "catppuccin/nvim", as = "catppuccin" }

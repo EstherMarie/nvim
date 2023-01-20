@@ -1,4 +1,3 @@
-
 -- from:
 -- https://github.com/ThePrimeagen/init.lua/
 -- https://github.com/LunarVim/nvim-basic-ide/
@@ -49,7 +48,7 @@ keymap("v", "p", '"_dP', opts)
 -- remap Esc to jk
 keymap("i", "jk", "<esc>", opts)
 
-keymap("n", "<leader>f", vim.lsp.buf.format)
+keymap("n", "<leader>f", vim.lsp.buf.format, { desc = 'Formats a buffer with LSP' })
 
 -- Plugins --
 
@@ -65,12 +64,12 @@ keymap("n", "<leader>gd", ":Git diff<CR>", opts)
 keymap("n", "<leader>gm", ":Git mergetool<CR>", opts)
 
 -- NvimTree
-keymap("n", "<leader>w", ":NvimTreeToggle<CR>", {desc = 'Toggle Tree'})
+keymap("n", "<leader>w", ":NvimTreeToggle<CR>", { desc = 'Toggle Tree' })
 
 -- Toggleterm
-keymap("n", "<C-\\>", ":ToggleTerm<CR>", {desc = "Open Terminal"})
-keymap("n", "<leader>t", ":ToggleTerm direction=horizontal<CR>", {desc = "Open Terminal - horizontal"})
-keymap("n", "<leader>v", ":ToggleTerm direction=vertical<CR>", {desc = "Open Terminal - vertical"})
+keymap("n", "<C-\\>", ":ToggleTerm<CR>", { desc = "Open Terminal" })
+keymap("n", "<leader>t", ":ToggleTerm direction=horizontal<CR>", { desc = "Open Terminal - horizontal" })
+keymap("n", "<leader>v", ":ToggleTerm direction=vertical<CR>", { desc = "Open Terminal - vertical" })
 
 -- Telescope
 keymap("n", "<leader>s", ":Telescope<CR>", {})
@@ -80,34 +79,35 @@ keymap('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S
 keymap('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 
 -- Comment
-keymap("n", "<leader>;", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", {desc = "Toggle Comment"})
-keymap("x", "<leader>;", '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>', {desc = "Toggle Comment"})
+keymap("n", "<leader>;", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", { desc = "Toggle Comment" })
+keymap("x", "<leader>;", '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>',
+  { desc = "Toggle Comment" })
 
 -- Trouble
 keymap("n", "<leader>x", "<cmd>TroubleToggle<cr>",
-  {silent = true, noremap = true}
+  { silent = true, noremap = true }
 )
 keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
-  {silent = true, noremap = true}
+  { silent = true, noremap = true }
 )
 keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
-  {silent = true, noremap = true}
+  { silent = true, noremap = true }
 )
 keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
-  {silent = true, noremap = true}
+  { silent = true, noremap = true }
 )
 keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
-  {silent = true, noremap = true}
+  { silent = true, noremap = true }
 )
 keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
-  {silent = true, noremap = true}
+  { silent = true, noremap = true }
 )
 keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
-  {silent = true, noremap = true}
+  { silent = true, noremap = true }
 )
 
 -- Diagnostic keymaps
-keymap('n', '[d', vim.diagnostic.goto_prev)
-keymap('n', ']d', vim.diagnostic.goto_next)
-keymap('n', '<leader>e', vim.diagnostic.open_float)
-keymap('n', '<leader>q', vim.diagnostic.setloclist)
+keymap('n', '[d', vim.diagnostic.goto_prev, { desc = "Diagnostic - go to previous" })
+keymap('n', ']d', vim.diagnostic.goto_next, { desc = "Diagnostic - go to next" })
+keymap('n', '<leader>e', vim.diagnostic.open_float, { desc = "Diagnostic - open float" })
+keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Diagnostic - set loc list" })
