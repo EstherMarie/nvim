@@ -111,3 +111,9 @@ keymap('n', '[d', vim.diagnostic.goto_prev, { desc = "Diagnostic - go to previou
 keymap('n', ']d', vim.diagnostic.goto_next, { desc = "Diagnostic - go to next" })
 keymap('n', '<leader>e', vim.diagnostic.open_float, { desc = "Diagnostic - open float" })
 keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Diagnostic - set loc list" })
+
+
+-- rest.nvim
+keymap('n', '<leader>rr', '<Plug>RestNvim', {desc = 'RestNvim - Run the request under the cursor'})
+keymap('n', '<leader>rp', '<Plug>RestNvimPreview', {desc = 'RestNvim - Preview the request cURL command'})
+keymap('n', '<leader>rl', '<Plug>RestNvimLast', {desc = 'RestNvim - re-run the last request'}) 
