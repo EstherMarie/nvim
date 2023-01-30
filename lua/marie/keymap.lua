@@ -40,7 +40,7 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Close buffers
-keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
+keymap("n", "<S-q>", ":bdelete!<CR>", opts)
 
 -- Better paste
 keymap("v", "p", '"_dP', opts)
@@ -114,6 +114,7 @@ keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Diagnostic - set l
 
 
 -- rest.nvim
+keymap('n', '<leader>r', 'RestNvim', {desc = 'RestNvim'})
 keymap('n', '<leader>rr', '<Plug>RestNvim', {desc = 'RestNvim - Run the request under the cursor'})
 keymap('n', '<leader>rp', '<Plug>RestNvimPreview', {desc = 'RestNvim - Preview the request cURL command'})
 keymap('n', '<leader>rl', '<Plug>RestNvimLast', {desc = 'RestNvim - re-run the last request'}) 

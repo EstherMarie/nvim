@@ -49,3 +49,5 @@ require('toggleterm').setup({
   },
 })
 
+require('illuminate').configure({})
+require('bufferline').setup({})
