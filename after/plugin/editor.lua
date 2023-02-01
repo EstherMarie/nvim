@@ -1,5 +1,30 @@
 -- Enable Comment.nvim
-require('Comment').setup()
+require('Comment').setup({
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  },
+  pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+})
+
+require 'nvim-treesitter.configs'.setup {
+  context_commentstring = {
+    enable = true,
+    config = {
+      javascript = {
+        __default = '// %s',
+        jsx_element = '{/* %s */}',
+        jsx_fragment = '{/* %s */}',
+        jsx_attribute = '// %s',
+        comment = '// %s'
+      },
+      typescript = {
+        __default = '// %s',
+        __multiline = '/* %s */'
+      }
+    }
+  }
+}
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
@@ -82,7 +107,7 @@ require("rest-nvim").setup({
   },
   -- Jump to request line on run
   jump_to_request = false,
-  env_file = '.env',
+  env_file = '.env.local',
   custom_dynamic_variables = {},
   yank_dry_run = true,
 })
