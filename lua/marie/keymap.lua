@@ -55,21 +55,11 @@ keymap("n", "<leader>f", vim.lsp.buf.format, { desc = 'Formats a buffer with LSP
 -- Packer
 keymap("n", "<leader>s", ":PackerSync<CR>", opts)
 
--- Fugitive
-keymap("n", "<leader>g", ":Git<CR>", opts)
-keymap("n", "<leader>ga", ":Git add<CR>", opts)
-keymap("n", "<leader>gc", ":Git commit<CR>", opts)
-keymap("n", "<leader>gl", ":Git log<CR>", opts)
-keymap("n", "<leader>gd", ":Git diff<CR>", opts)
-keymap("n", "<leader>gm", ":Git mergetool<CR>", opts)
-
 -- NvimTree
 keymap("n", "<leader>w", ":NvimTreeToggle<CR>", { desc = 'Toggle Tree' })
 
 -- Toggleterm
 keymap("n", "<C-\\>", ":ToggleTerm<CR>", { desc = "Open Terminal" })
-keymap("n", "<leader>t", ":ToggleTerm direction=horizontal<CR>", { desc = "Open Terminal - horizontal" })
-keymap("n", "<leader>v", ":ToggleTerm direction=vertical<CR>", { desc = "Open Terminal - vertical" })
 
 -- Telescope
 keymap("n", "<leader>s", ":Telescope<CR>", {})
@@ -84,33 +74,30 @@ keymap("x", "<leader>;", '<ESC><CMD>lua require("Comment.api").toggle.linewise(v
   { desc = "Toggle Comment" })
 
 -- Trouble
-keymap("n", "<leader>x", "<cmd>TroubleToggle<cr>",
-  { silent = true, noremap = true }
-)
-keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
-  { silent = true, noremap = true }
-)
-keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
-  { silent = true, noremap = true }
-)
-keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
-  { silent = true, noremap = true }
-)
-keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
-  { silent = true, noremap = true }
-)
-keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
-  { silent = true, noremap = true }
-)
-keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
-  { silent = true, noremap = true }
-)
+keymap("n", "<leader>x", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
+keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
+keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { silent = true, noremap = true })
+keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", { silent = true, noremap = true })
+keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = true, noremap = true })
+keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
+keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
+
+-- LSPSaga
+keymap("n", "v", ":Lspsaga<CR>", { desc = "LSPSaga" })
+keymap("n", "vh", "<cmd>Lspsaga lsp_finder<CR>", { desc = "Lspsaga - LSP finder" })
+keymap({ "n", "v" }, "<leader>va", "<cmd>Lspsaga code_action<CR>", { desc = "Lspsaga - Code actions" })
+keymap("n", "vd", "<cmd>Lspsaga peek_definition<CR>", { desc = "Lspsaga - Peek definition" })
+keymap("n", "<leader>vl", "<cmd>Lspsaga show_line_diagnostics<CR>", { desc = "Lspsaga - Show line diagnostics" })
+keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Lspsaga - Jump previous diagnostic" })
+keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "Lspsaga - Jump next diagnostic" })
+keymap("n", "<leader>vo", "<cmd>Lspsaga outline<CR>", { desc = "Lspsaga - Toggle outline" })
+keymap("n", "<leader>vk", "<cmd>Lspsaga hover_doc<CR>", { desc = "Lspsaga - Hover doc" })
 
 -- Diagnostic keymaps
 keymap('n', '[d', vim.diagnostic.goto_prev, { desc = "Diagnostic - go to previous" })
 keymap('n', ']d', vim.diagnostic.goto_next, { desc = "Diagnostic - go to next" })
-keymap('n', '<leader>e', vim.diagnostic.open_float, { desc = "Diagnostic - open float" })
-keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Diagnostic - set loc list" })
+-- keymap('n', '<leader>e', vim.diagnostic.open_float, { desc = "Diagnostic - open float" })
+-- keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Diagnostic - set loc list" })
 
 
 -- rest.nvim
