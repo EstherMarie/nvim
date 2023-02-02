@@ -20,7 +20,10 @@ require 'nvim-treesitter.configs'.setup {
       },
       typescript = {
         __default = '// %s',
-        __multiline = '/* %s */'
+        __multiline = '/* %s */',
+        tsx_element = '{/* %s */}',
+        tsx_fragment = '{/* %s */}',
+        tsx_attribute = '// %s',
       }
     }
   }

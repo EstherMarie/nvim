@@ -8,6 +8,10 @@ require('telescope').setup {
         ['<C-d>'] = false,
       },
     },
+    layout_strategy = 'horizontal',
+    layout_config = {
+      preview_width = 0.65,
+    },
   },
 }
 
