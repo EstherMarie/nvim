@@ -82,17 +82,6 @@ keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = true, nor
 keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
 keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
 
--- LSPSaga
-keymap("n", "v", ":Lspsaga<CR>", { desc = "LSPSaga" })
-keymap("n", "vh", "<cmd>Lspsaga lsp_finder<CR>", { desc = "Lspsaga - LSP finder" })
-keymap({ "n", "v" }, "<leader>va", "<cmd>Lspsaga code_action<CR>", { desc = "Lspsaga - Code actions" })
-keymap("n", "vd", "<cmd>Lspsaga peek_definition<CR>", { desc = "Lspsaga - Peek definition" })
-keymap("n", "<leader>vl", "<cmd>Lspsaga show_line_diagnostics<CR>", { desc = "Lspsaga - Show line diagnostics" })
-keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Lspsaga - Jump previous diagnostic" })
-keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "Lspsaga - Jump next diagnostic" })
-keymap("n", "<leader>vo", "<cmd>Lspsaga outline<CR>", { desc = "Lspsaga - Toggle outline" })
-keymap("n", "<leader>vk", "<cmd>Lspsaga hover_doc<CR>", { desc = "Lspsaga - Hover doc" })
-
 -- Diagnostic keymaps
 keymap('n', '[d', vim.diagnostic.goto_prev, { desc = "Diagnostic - go to previous" })
 keymap('n', ']d', vim.diagnostic.goto_next, { desc = "Diagnostic - go to next" })
