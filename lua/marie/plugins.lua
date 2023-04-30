@@ -116,6 +116,12 @@ require('packer').startup(function(use)
       require("nvim-autopairs").setup {}
     end
   }
+  use { 
+    'windwp/nvim-ts-autotag',
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end
+  }
   use {
     'folke/todo-comments.nvim',
     requires = 'nvim-lua/plenary.nvim',
