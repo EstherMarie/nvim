@@ -1,6 +1,5 @@
 -- Set lualine as statusline
 -- See `:help lualine.txt`
-require('onedark')
 
 require('lualine').setup {
   options = {

@@ -50,13 +50,20 @@ require('gitsigns').setup {
 }
 
 require("nvim-tree").setup({
-  view = {
-    mappings = {
-      list = {
-        { key = "l", action = "open_file" },
-      },
+  -- on_attach = on_attach,
+  renderer = {
+    indent_markers = {
+      enable = true,
     },
-  },
+    icons = {
+      show = {
+        file = false,
+        folder = false,
+        folder_arrow = false,
+        git = true,
+      },
+    }
+  }
 })
 
 -- Setup Toggleterm

@@ -7,4 +7,5 @@ catppuccin.setup({
     illuminate = true
   }
 })
+
 vim.cmd [[colorscheme catppuccin]]
