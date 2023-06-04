@@ -11,14 +11,20 @@ vim.opt.expandtab = true
 vim.opt.cursorline = true
 
 vim.opt.smartindent = true
+vim.opt.autoindent = true
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 vim.opt.fileencoding = "utf-8"
+-- vim.opt.fileformat = "unix'
+
 vim.opt.mouse = "a"
 vim.opt.undofile = true
 
@@ -35,6 +41,9 @@ vim.opt.backup = false
 vim.opt.clipboard = "unnamedplus"
 
 vim.opt.wildmenu = true
+
+vim.opt.foldmethod = "indent"
+vim.opt.foldlevelstart = 99
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'

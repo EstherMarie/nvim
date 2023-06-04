@@ -47,6 +47,8 @@ keymap("v", "p", '"_dP', opts)
 
 -- remap Esc to jk
 keymap("i", "jk", "<esc>", opts)
+keymap("n", "mm", ":w<CR>", opts)
+keymap("n", "<CR>", "i<CR><esc>", opts)
 
 keymap("n", "<leader>f", vim.lsp.buf.format, { desc = 'Formats a buffer with LSP' })
 
@@ -60,6 +62,8 @@ keymap("n", "<leader>w", ":NvimTreeToggle<CR>", { desc = 'Toggle Tree' })
 
 -- Toggleterm
 keymap("n", "<C-\\>", ":ToggleTerm<CR>", { desc = "Open Terminal" })
+-- keymap("n", "<leader>t", ":ToggleTerm direction=horizontal<CR>", { desc = "Open Terminal - horizontal" })
+-- keymap("n", "<leader>v", ":ToggleTerm direction=vertical<CR>", { desc = "Open Terminal - vertical" })
 
 -- Telescope
 keymap("n", "<leader>s", ":Telescope<CR>", {})
@@ -74,13 +78,27 @@ keymap("x", "<leader>;", '<ESC><CMD>lua require("Comment.api").toggle.linewise(v
   { desc = "Toggle Comment" })
 
 -- Trouble
-keymap("n", "<leader>x", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
-keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
-keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { silent = true, noremap = true })
-keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", { silent = true, noremap = true })
-keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = true, noremap = true })
-keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
-keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
+keymap("n", "<leader>x", "<cmd>TroubleToggle<cr>",
+  { silent = true, noremap = true }
+)
+keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
+  { silent = true, noremap = true }
+)
+keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
+  { silent = true, noremap = true }
+)
+keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
+  { silent = true, noremap = true }
+)
+keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
+  { silent = true, noremap = true }
+)
+keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
+  { silent = true, noremap = true }
+)
+keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
+  { silent = true, noremap = true }
+)
 
 -- Diagnostic keymaps
 keymap('n', '[d', vim.diagnostic.goto_prev, { desc = "Diagnostic - go to previous" })
@@ -90,7 +108,7 @@ keymap('n', ']d', vim.diagnostic.goto_next, { desc = "Diagnostic - go to next" }
 
 
 -- rest.nvim
-keymap('n', '<leader>r', 'RestNvim', {desc = 'RestNvim'})
-keymap('n', '<leader>rr', '<Plug>RestNvim', {desc = 'RestNvim - Run the request under the cursor'})
-keymap('n', '<leader>rp', '<Plug>RestNvimPreview', {desc = 'RestNvim - Preview the request cURL command'})
-keymap('n', '<leader>rl', '<Plug>RestNvimLast', {desc = 'RestNvim - re-run the last request'}) 
+keymap('n', '<leader>r', 'RestNvim', { desc = 'RestNvim' })
+keymap('n', '<leader>rr', '<Plug>RestNvim', { desc = 'RestNvim - Run the request under the cursor' })
+keymap('n', '<leader>rp', '<Plug>RestNvimPreview', { desc = 'RestNvim - Preview the request cURL command' })
+keymap('n', '<leader>rl', '<Plug>RestNvimLast', { desc = 'RestNvim - re-run the last request' })

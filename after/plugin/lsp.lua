@@ -137,6 +137,13 @@ local servers = {
       maxSize = 5000000;
     },
   },
+  bashls = {},
+  dockerls = {},
+  emmet_ls = {},
+  eslint = {},
+  jsonls = {},
+  tailwindcss = {},
+  vimls = {},
 }
 
 -- Setup neovim lua configuration
