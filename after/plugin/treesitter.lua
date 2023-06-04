@@ -3,10 +3,19 @@
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = {
-    'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'tsx', 'html', 'css', 'javascript', 'help', 'http', 'json', 'php', 'vim'
+    'c', 'cpp', 'c_sharp', 'go', 'lua', 'python', 'rust', 'typescript', 'tsx', 'html', 'css', 'scss', 'javascript', 'help', 'http', 'json', 'yaml', 'php', 'vim', 'diff', 'gitcommit'
   },
 
   autotag = { enable = true },
+  rainbow = {
+    enable = true,
+    query = {
+      'rainbow-parens',
+      javascript = 'rainbow-parens-react',
+      -- tsx = 'rainbow-tags',
+    },
+    strategy = require('ts-rainbow').strategy.global,
+  },
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
   incremental_selection = {

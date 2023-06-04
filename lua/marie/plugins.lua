@@ -62,6 +62,25 @@ require('packer').startup(function(use)
     after = 'nvim-treesitter',
   }
 
+  -- ----- Plugins -----
+
+  use { -- Additional text objects via treesitter
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    after = 'nvim-treesitter',
+  }
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
+  use {
+    'windwp/nvim-ts-autotag',
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end
+  }
+  use {
+    'HiPhish/nvim-ts-rainbow2',
+    branch = 'master'
+  }
+
+
   -- ========== Interface ==========
 
   -- Toggleterm, statusline, bufferline etc
@@ -100,7 +119,6 @@ require('packer').startup(function(use)
   
   -- ========== Editing and formatting ==========
   
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'RRethy/vim-illuminate'
@@ -114,12 +132,6 @@ require('packer').startup(function(use)
     "windwp/nvim-autopairs",
     config = function()
       require("nvim-autopairs").setup {}
-    end
-  }
-  use { 
-    'windwp/nvim-ts-autotag',
-    config = function()
-      require('nvim-ts-autotag').setup()
     end
   }
   use {
