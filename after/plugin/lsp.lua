@@ -144,10 +144,13 @@ local servers = {
   jsonls = {},
   tailwindcss = {},
   vimls = {},
+  astro = {},
 }
 
 -- Setup neovim lua configuration
-require('neodev').setup()
+require('neodev').setup({
+  library = { plugins = { "nvim-dap-ui" }, types = true },
+})
 --
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -217,4 +220,9 @@ cmp.setup {
 }
 
 -- Turn on lsp status information
-require('fidget').setup()
+require('fidget').setup({
+  window = {
+    blend = 0,
+    border = "none"
+  }
+})

@@ -8,7 +8,10 @@ require('packer').startup(function(use)
 
   use 'nvim-lua/plenary.nvim'
   use 'folke/neodev.nvim'
-  use 'j-hui/fidget.nvim'
+  use {
+    'j-hui/fidget.nvim',
+    tag = 'legacy'
+  }
 
 
   -- ========== LSP ==========
@@ -39,7 +42,7 @@ require('packer').startup(function(use)
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
       local null_ls = require("null-ls")
-      
+
       null_ls.setup({ sources = {
         null_ls.builtins.formatting.prettier,
         null_ls.builtins.diagnostics.eslint,
@@ -49,6 +52,11 @@ require('packer').startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
   })
 
+  -- ========== Debugger Adapter ==========
+
+  use 'mfussenegger/nvim-dap'
+  use 'rcarriga/nvim-dap-ui'
+
   -- ========== Treesitter ==========
 
   use { -- Highlight, edit, and navigate code
@@ -57,10 +65,7 @@ require('packer').startup(function(use)
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   }
-  use { -- Additional text objects via treesitter
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    after = 'nvim-treesitter',
-  }
+
 
   -- ----- Plugins -----
 
@@ -85,14 +90,15 @@ require('packer').startup(function(use)
 
   -- Toggleterm, statusline, bufferline etc
   use 'nvim-tree/nvim-web-devicons'
+  use 'ChristianChiarulli/neovim-codicons'
   use 'nvim-lualine/lualine.nvim'
   use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
-  use { 
+  use {
     "akinsho/toggleterm.nvim",
     tag = '*',
     config = function()
       require("toggleterm").setup()
-    end 
+    end
   }
   use {
     'nvim-tree/nvim-tree.lua',
@@ -107,19 +113,19 @@ require('packer').startup(function(use)
     end,
     event = "BufWinEnter",
   }
-  
+
   -- ========== Fuzzy Finder ==========
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
-  
+
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
-  
-  
+
+
   -- ========== Editing and formatting ==========
-  
-  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+
+  use { 'lukas-reineke/indent-blankline.nvim', tag = "v2.*" } -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'RRethy/vim-illuminate'
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically

@@ -103,7 +103,7 @@ keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
 -- Diagnostic keymaps
 keymap('n', '[d', vim.diagnostic.goto_prev, { desc = "Diagnostic - go to previous" })
 keymap('n', ']d', vim.diagnostic.goto_next, { desc = "Diagnostic - go to next" })
--- keymap('n', '<leader>e', vim.diagnostic.open_float, { desc = "Diagnostic - open float" })
+keymap('n', '<leader>e', vim.diagnostic.open_float, { desc = "Diagnostic - open float" })
 -- keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Diagnostic - set loc list" })
 
 
