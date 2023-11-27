@@ -60,11 +60,6 @@ keymap("n", "<leader>s", ":PackerSync<CR>", opts)
 -- NvimTree
 keymap("n", "<leader>w", ":NvimTreeToggle<CR>", { desc = 'Toggle Tree' })
 
--- Toggleterm
-keymap("n", "<C-\\>", ":ToggleTerm<CR>", { desc = "Open Terminal" })
--- keymap("n", "<leader>t", ":ToggleTerm direction=horizontal<CR>", { desc = "Open Terminal - horizontal" })
--- keymap("n", "<leader>v", ":ToggleTerm direction=vertical<CR>", { desc = "Open Terminal - vertical" })
-
 -- Telescope
 keymap("n", "<leader>s", ":Telescope<CR>", {})
 keymap('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
