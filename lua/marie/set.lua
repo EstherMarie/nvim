@@ -23,6 +23,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 vim.opt.fileencoding = "utf-8"
+vim.opt.encoding = "utf-8"
 -- vim.opt.fileformat = "unix'
 
 vim.opt.mouse = "a"
@@ -58,3 +59,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+-- [[ Set border on floating windows ]]
+vim.lsp.handlers["textDocument/hover"] =
+  vim.lsp.with(
+  vim.lsp.handlers.hover,
+  {
+    border = "rounded"
+  }
+)

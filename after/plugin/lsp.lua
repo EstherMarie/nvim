@@ -1,9 +1,7 @@
 -- ================= from kickstart.nvim ==================
-require('mason').setup()
-require('mason-lspconfig').setup()
 
 -- LSP settings.
---  This function gets run when an LSP connects to a particular buffer.
+-- This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
@@ -58,90 +56,90 @@ local servers = {
   tsserver = {},
   cssmodules_ls = {},
   intelephense = {
-   stubs = {
-    "apache",
-    "bcmath",
-    "bz2",
-    "calendar",
-    "com_dotnet",
-    "Core",
-    "ctype",
-    "curl",
-    "date",
-    "dba",
-    "dom",
-    "enchant",
-    "exif",
-    "FFI",
-    "fileinfo",
-    "filter",
-    "fpm",
-    "ftp",
-    "gd",
-    "gettext",
-    "gmp",
-    "hash",
-    "iconv",
-    "imap",
-    "intl",
-    "json",
-    "ldap",
-    "libxml",
-    "mbstring",
-    "meta",
-    "mysqli",
-    "oci8",
-    "odbc",
-    "openssl",
-    "pcntl",
-    "pcre",
-    "PDO",
-    "pdo_ibm",
-    "pdo_mysql",
-    "pdo_pgsql",
-    "pdo_sqlite",
-    "pgsql",
-    "Phar",
-    "posix",
-    "pspell",
-    "readline",
-    "Reflection",
-    "session",
-    "shmop",
-    "SimpleXML",
-    "snmp",
-    "soap",
-    "sockets",
-    "sodium",
-    "SPL",
-    "sqlite3",
-    "standard",
-    "superglobals",
-    "sysvmsg",
-    "sysvsem",
-    "sysvshm",
-    "tidy",
-    "tokenizer",
-    "xml",
-    "xmlreader",
-    "xmlrpc",
-    "xmlwriter",
-    "xsl",
-    "Zend OPcache",
-    "zip",
-    "zlib",
-    "wordpress"
+    stubs = {
+      "apache",
+      "bcmath",
+      "bz2",
+      "calendar",
+      "com_dotnet",
+      "Core",
+      "ctype",
+      "curl",
+      "date",
+      "dba",
+      "dom",
+      "enchant",
+      "exif",
+      "FFI",
+      "fileinfo",
+      "filter",
+      "fpm",
+      "ftp",
+      "gd",
+      "gettext",
+      "gmp",
+      "hash",
+      "iconv",
+      "imap",
+      "intl",
+      "json",
+      "ldap",
+      "libxml",
+      "mbstring",
+      "meta",
+      "mysqli",
+      "oci8",
+      "odbc",
+      "openssl",
+      "pcntl",
+      "pcre",
+      "PDO",
+      "pdo_ibm",
+      "pdo_mysql",
+      "pdo_pgsql",
+      "pdo_sqlite",
+      "pgsql",
+      "Phar",
+      "posix",
+      "pspell",
+      "readline",
+      "Reflection",
+      "session",
+      "shmop",
+      "SimpleXML",
+      "snmp",
+      "soap",
+      "sockets",
+      "sodium",
+      "SPL",
+      "sqlite3",
+      "standard",
+      "superglobals",
+      "sysvmsg",
+      "sysvsem",
+      "sysvshm",
+      "tidy",
+      "tokenizer",
+      "xml",
+      "xmlreader",
+      "xmlrpc",
+      "xmlwriter",
+      "xsl",
+      "Zend OPcache",
+      "zip",
+      "zlib",
+      "wordpress"
     },
     environment = {
       includePaths = '/home/your-user/.composer/vendor/php-stubs/'
     },
     files = {
-      maxSize = 5000000;
+      maxSize = 5000000,
     },
   },
   bashls = {},
   dockerls = {},
-  emmet_ls = {},
+  -- emmet_ls = {},
   eslint = {},
   jsonls = {},
   tailwindcss = {},
@@ -151,12 +149,15 @@ local servers = {
 
 -- Setup neovim lua configuration
 require('neodev').setup({
-  library = { plugins = { "nvim-dap-ui" }, types = true },
+  library = { plugins = { "nvim-dap-ui", types = true } }
 })
---
+
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+-- Setup mason so it can manage external tooling
+require('mason').setup()
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
@@ -171,65 +172,37 @@ mason_lspconfig.setup_handlers {
       capabilities = capabilities,
       on_attach = on_attach,
       settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
     }
   end,
 }
 
--- nvim-cmp setup
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-require('luasnip.loaders.from_vscode').lazy_load()
-luasnip.config.setup {}
-
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
+-- lsp-format.nvim
+require("lsp-format").setup {
+  typescript = {
+    tab_width = function()
+      return vim.opt.shiftwidth:get()
     end,
   },
-  completion = {
-    completeopt = 'menu,menuone,noinsert'
-  },
-  mapping = cmp.mapping.preset.insert {
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete {},
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.locally_jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  },
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  },
+}
+require("lspconfig").tsserver.setup {
+  on_attach = require("lsp-format").on_attach
 }
 
--- Turn on lsp status information
-require('fidget').setup({
-  window = {
-    blend = 0,
-    border = "none"
-  }
+-- Run EslintFixAll command to format a document on save
+require("lspconfig").eslint.setup({
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
 })
+
+
+-- Turn on lsp status information
+-- require('fidget').setup({
+--   window = {
+--     blend = 0,
+--     border = "none"
+--   }
+-- })

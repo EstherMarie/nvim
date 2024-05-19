@@ -7,8 +7,8 @@ require('Comment').setup({
   pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
 })
 
-require 'nvim-treesitter.configs'.setup {
-  ts_context_commentstring = {
+require('ts_context_commentstring').setup {
+  context_commentstring = {
     enable = true,
     config = {
       javascript = {
@@ -66,7 +66,6 @@ require("nvim-tree").setup({
     }
   }
 })
-
 
 require('illuminate').configure({})
 require('bufferline').setup({})
