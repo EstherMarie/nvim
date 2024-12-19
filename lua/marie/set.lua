@@ -68,3 +68,31 @@ vim.lsp.handlers["textDocument/hover"] =
     border = "rounded"
   }
 )
+
+-- [[ Listchars ]]
+-- http://en.wikipedia.org/wiki/Unicode_Geometric_Shapes
+-- http://www.joelonsoftware.com/articles/Unicode.html
+
+vim.opt.list = true
+
+vim.opt.listchars = {
+  -- space = '·',
+  -- eol = '↲',
+  tab = '>-',
+  trail = '•',
+  extends = '>',
+  precedes = '<',
+  nbsp = '◆' -- '• ▲ ◆ ▣'
+}
+
+-- Equivale a:
+-- :set listchars=eol:$,tab:>-,trail:~,space:·,extends:>,precedes:<,nbsp:+
+-- Referência: help lua-vim-setlocal (pesquisar por "listchars")
+
+
+-- [[ Remove trailing space]]
+-- source: https://vimtricks.com/p/vim-remove-trailing-whitespace/
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
+})
